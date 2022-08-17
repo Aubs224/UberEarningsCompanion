@@ -4,6 +4,7 @@ import java.util.*;
 
 public class Shift {
 //Attributes
+	private double shiftStart;
 	private double totalEarnings;
 	private double earnings;
 	private double expenses;
@@ -104,6 +105,7 @@ public class Shift {
 	}
 	
 	public void startShift() {
+		this.shiftStart = System.currentTimeMillis();
 		this.totalEarnings = 0;
 		this.earnings = 0;
 		this.expenses = 0;
@@ -112,10 +114,10 @@ public class Shift {
 	}
 	
 	public void endShift() {
-		System.out.print("How long was your shift: ");
-		setShiftLength(keyboard.nextDouble());
+		setShiftLength(System.currentTimeMillis() - shiftStart);
+		System.out.print("Hours Worked: " + String.format("%.2f", (getShiftLength() / 3600000)));
 		setTotalEarnings(getEarnings() - getExpenses());
-		setEarningsPerHour(getTotalEarnings() / getShiftLength());
+		setEarningsPerHour(getTotalEarnings() / (getShiftLength() / 3600000)); // Not working
 		System.out.printf("%nEarnings: " + String.format("%.2f", getEarnings()) + "%nExpensis: " + String.format("%.2f", getExpenses()) + "%nHourly Rate: " + String.format("%.2f", getEarningsPerHour())+ "%nTotal Earnings: " + String.format("%.2f", getTotalEarnings()) + "%n[Type done to contune]%n");
 		startShift();
 		pause();

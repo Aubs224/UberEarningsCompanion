@@ -3,7 +3,7 @@ package earnings;
 public class Main {
 
 	public static void main(String[] args) {
-		double version = 1.0;
+		double version = 1.1;
 		boolean programLoop = true;
 		boolean menuLoop = true;
 		boolean shiftLoop = false;
